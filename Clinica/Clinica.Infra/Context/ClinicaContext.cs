@@ -1,4 +1,5 @@
 ﻿using Clinica.Domain.Models;
+using Clinica.Infra.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clinica.Infra.Context
@@ -17,5 +18,32 @@ namespace Clinica.Infra.Context
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<ReceitaMedica> ReceitasMedica { get; set; }
         public DbSet<RequerimentoExame> RequerimentosExame { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new CoberturaMap());
+            modelBuilder.ApplyConfiguration(new ConsultaMap());
+            modelBuilder.ApplyConfiguration(new EnderecoMap());
+            modelBuilder.ApplyConfiguration(new EspecialidadeMap());
+            modelBuilder.ApplyConfiguration(new FormaPagamentoMap());
+            modelBuilder.ApplyConfiguration(new HorarioMap());
+            modelBuilder.ApplyConfiguration(new HorarioAtendimentoMap());
+            modelBuilder.ApplyConfiguration(new MedicoMap());
+            modelBuilder.ApplyConfiguration(new PacienteMap());
+            modelBuilder.ApplyConfiguration(new PagamentoMap());
+            modelBuilder.ApplyConfiguration(new ReceitaMedicaMap());
+            modelBuilder.ApplyConfiguration(new RequerimentoExameMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql("Server = localhost; Port = 5432; Database = clinicadb; User Id = postgres; Password = postgres;");
+
+            base.OnConfiguring(optionsBuilder);
+        }
     }
 }

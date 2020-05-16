@@ -12,7 +12,7 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.HoraInicio).HasColumnName("Hor_HoraInicio").HasMaxLength(5);
             builder.Property(x => x.Dia).HasColumnName("Hor_Dia");
 
-            builder.HasMany<HorarioAtendimento>()
+            builder.HasMany(x => x.HorariosAtendimento)
                 .WithOne(x => x.Horario)
                 .HasForeignKey(x => x.IdHorario);
 

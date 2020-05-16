@@ -11,7 +11,7 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Id).HasColumnName("Fop_IdFormaPagamento");
             builder.Property(x => x.Descricao).HasColumnName("Fop_Descricao");
 
-            builder.HasMany<Pagamento>()
+            builder.HasMany(x => x.Pagamentos)
                 .WithOne(x => x.FormaPagamento)
                 .HasForeignKey(x => x.IdFormaPagamento);
 

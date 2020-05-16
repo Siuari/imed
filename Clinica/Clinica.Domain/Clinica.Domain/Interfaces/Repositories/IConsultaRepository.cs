@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Clinica.Domain.Interfaces.Repositories.Base;
+using Clinica.Domain.Models;
 
 namespace Clinica.Domain.Interfaces.Repositories
 {
-    interface IConsultaRepository
+    public interface IConsultaRepository : IRepositoryBase<Guid, Consulta>
     {
     }
 }

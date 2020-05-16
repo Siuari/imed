@@ -1,22 +1,24 @@
-﻿using System;
-using System.Linq;
-using Clinica.Domain.Concretes.Services.Base;
-using Clinica.Domain.Interfaces.Repositories;
-using Clinica.Domain.Interfaces.Repositories.Base;
+﻿using Clinica.Domain.Interfaces.Repositories;
 using Clinica.Domain.Interfaces.Services;
 using Clinica.Domain.Models;
+using System;
+using System.Linq;
+using Clinica.Domain.Enums;
+using Clinica.Domain.Interfaces.Repositories.Base;
 
 namespace Clinica.Domain.Concretes.Services
 {
-    public class PacienteSercive : ServiceBase<Paciente>, IPacienteService
+    public class PacienteService : IPacienteService
     {
         private readonly IPacienteRepository _pacienteRepository;
         private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public PacienteSercive(IRepositoryBase<Paciente> repositoryBase, IPacienteRepository pacienteRepository, IEnderecoRepository enderecoRepository) : base(repositoryBase)
+        public PacienteService(IPacienteRepository pacienteRepository, IEnderecoRepository enderecoRepository, IUsuarioRepository usuarioRepository)
         {
             _pacienteRepository = pacienteRepository;
             _enderecoRepository = enderecoRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         public Paciente Inserir(Paciente paciente)
@@ -30,11 +32,20 @@ namespace Clinica.Domain.Concretes.Services
 
             paciente.GerarId();
             paciente.AlocarEndereco(endereco.Id.Value);
+            paciente.GerarUsuario(EnumTipoUsuario.Paciente);
 
             _pacienteRepository.Inserir(paciente);
-            Salvar();
+            _usuarioRepository.Inserir(paciente.Usuario);
+            _pacienteRepository.Salvar();
+
+            //_usuarioRepository.Salvar();
 
             return paciente;
+        }
+
+        public Paciente ObterPorId(Guid id)
+        {
+            return _pacienteRepository.ObterPorId(id);
         }
 
         private Endereco InserirEnderecoDoPaciente(Endereco endereco)
@@ -49,7 +60,7 @@ namespace Clinica.Domain.Concretes.Services
             
             endereco.GerarId();
             _enderecoRepository.Inserir(endereco);
-            Salvar();
+            _enderecoRepository.Salvar();
 
             return endereco;
         }
@@ -59,9 +70,9 @@ namespace Clinica.Domain.Concretes.Services
             throw new System.NotImplementedException();
         }
 
-        public Paciente Deletar(Paciente paciente)
+        public Paciente RemoverPaciente(Guid id)
         {
-            throw new System.NotImplementedException();
+            return _pacienteRepository.Remover(id);
         }
     }
 }

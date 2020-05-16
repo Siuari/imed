@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Clinica.Domain.Enums;
 using Clinica.Domain.Models.Base;
 
 namespace Clinica.Domain.Models
@@ -14,11 +15,18 @@ namespace Clinica.Domain.Models
         public string Cpf { get; private set; }
 
         public Endereco Endereco { get; private set; }
+        public Usuario Usuario { get; private set; }
         public IEnumerable<Consulta> Consultas { get; private set; }
 
         public void AlocarEndereco(Guid idEndereco)
         {
             IdEndereco = idEndereco;
+        }
+
+        public void GerarUsuario(EnumTipoUsuario tipoUsuario)
+        {
+            Usuario = new Usuario(Cpf, Cpf, Id.Value, tipoUsuario);
+            Usuario.GerarId();
         }
     }
 }

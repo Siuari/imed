@@ -14,7 +14,7 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Numero).HasColumnName("End_Numero");
             builder.Property(x => x.Cep).HasColumnName("End_Cep").HasMaxLength(8).IsFixedLength();
 
-            builder.HasMany<Paciente>()
+            builder.HasMany(x => x.Pacientes)
                 .WithOne(x => x.Endereco)
                 .HasForeignKey(x => x.IdEndereco);
 

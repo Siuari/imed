@@ -13,11 +13,11 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Nome).HasColumnName("Med_Nome");
             builder.Property(x => x.Crm).HasColumnName("Med_Crm");
 
-            builder.HasOne<Especialidade>()
+            builder.HasOne(x => x.Especialidade)
                 .WithMany(x => x.Medicos)
                 .HasForeignKey(x => x.IdEspecialidade);
 
-            builder.HasMany<HorarioAtendimento>()
+            builder.HasMany(x => x.HorariosAtendimento)
                 .WithOne(x => x.Medico)
                 .HasForeignKey(x => x.IdMedico);
 

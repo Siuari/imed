@@ -1,12 +1,13 @@
-﻿using Clinica.Domain.Interfaces.Services.Base;
+﻿using System;
 using Clinica.Domain.Models;
 
 namespace Clinica.Domain.Interfaces.Services
 {
-    public interface IPacienteService : IServiceBase<Paciente>
+    public interface IPacienteService
     {
         Paciente Inserir(Paciente paciente);
+        Paciente ObterPorId(Guid id);
         Paciente Atualizar(Paciente paciente);
-        Paciente Deletar(Paciente paciente);
+        Paciente RemoverPaciente(Guid id);
     }
 }

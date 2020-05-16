@@ -14,11 +14,11 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Valor).HasColumnName("Pag_Valor");
             builder.Property(x => x.DataPagamento).HasColumnName("Pag_DataPagamento");
 
-            builder.HasOne<Consulta>()
+            builder.HasOne(x => x.Consulta)
                 .WithMany(x => x.Pagamentos)
                 .HasForeignKey(x => x.IdConsulta);
 
-            builder.HasOne<FormaPagamento>()
+            builder.HasOne(x => x.FormaPagamento)
                 .WithMany(x => x.Pagamentos)
                 .HasForeignKey(x => x.IdFormaPagamento);
 

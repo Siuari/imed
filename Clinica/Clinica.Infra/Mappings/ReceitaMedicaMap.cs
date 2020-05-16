@@ -13,7 +13,7 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Descricao).HasColumnName("Rem_Descricao");
             builder.Property(x => x.DataEmissao).HasColumnName("Rem_DataEmissao");
 
-            builder.HasOne<Consulta>()
+            builder.HasOne(x => x.Consulta)
                 .WithMany(x => x.ReceitasMedica)
                 .HasForeignKey(x => x.IdConsulta);
 

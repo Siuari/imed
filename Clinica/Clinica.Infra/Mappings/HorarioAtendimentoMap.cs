@@ -12,15 +12,15 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.IdMedico).HasColumnName("Med_IdMedico");
             builder.Property(x => x.IdHorario).HasColumnName("Hor_IdHorario");
 
-            builder.HasOne<Medico>()
+            builder.HasOne(x => x.Medico)
                 .WithMany(x => x.HorariosAtendimento)
                 .HasForeignKey(x => x.IdMedico);
 
-            builder.HasOne<Horario>()
+            builder.HasOne(x => x.Horario)
                 .WithMany(x => x.HorariosAtendimento)
                 .HasForeignKey(x => x.IdMedico);
 
-            builder.HasMany<Consulta>()
+            builder.HasMany(x => x.Consultas)
                 .WithOne(x => x.HorarioAtendimento)
                 .HasForeignKey(x => x.IdHorarioAtendimento);
 

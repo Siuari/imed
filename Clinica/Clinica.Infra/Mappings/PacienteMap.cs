@@ -16,13 +16,17 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.Rg).HasColumnName("Pac_Rg");
             builder.Property(x => x.Cpf).HasColumnName("Pac_Cpf");
 
-            builder.HasOne<Endereco>()
+            builder.HasOne(x => x.Endereco)
                 .WithMany(x => x.Pacientes)
                 .HasForeignKey(x => x.IdEndereco);
 
-            builder.HasMany<Consulta>()
+            builder.HasMany(x => x.Consultas)
                 .WithOne(x => x.Paciente)
                 .HasForeignKey(x => x.IdPaciente);
+
+            builder.HasOne(x => x.Usuario)
+                .WithOne(x => x.Paciente)
+                .HasForeignKey<Usuario>(x => x.IdPaciente);
 
             builder.ToTable("Paciente", "Clinica");
         }
