@@ -21,20 +21,28 @@ namespace Clinica.Infra.IoC
             service.AddScoped<IConsultaRepository, ConsultaRepository>();
             service.AddScoped<IEnderecoRepository, EnderecoRepository>();
             service.AddScoped<IHorarioAtendimentoRepository, HorarioAtendimentoRepository>();
+            service.AddScoped<IHorarioRepository, HorarioRepository>();
             service.AddScoped<IPacienteRepository, PacienteRepository>();
             service.AddScoped<IUsuarioRepository, UsuarioRepository>();
             service.AddScoped<IMedicoRepository, MedicoRepository>();
+            service.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
 
-            //service.AddScoped<ICoberturaService, CoberturaService>();
-            //service.AddScoped<IConsultaService>();
-            //service.AddScoped<IEnderecoService>();
-            //service.AddScoped<IHorarioAtendimentoRepository>();
             service.AddScoped<IPacienteService, PacienteService>();
             service.AddScoped<IMedicoService, MedicoSercive>();
+            service.AddScoped<IEspecialidadeService, EspecialidadeService>();
+            service.AddScoped<ICoberturaService, CoberturaService>();
+            service.AddScoped<IConsultaService, ConsultaService>();
+            service.AddScoped<IHorarioAtendimentoService, HorarioAtendimentoService>();
+            service.AddScoped<IHorarioService, HorarioService>();
 
             service.AddScoped<IPacienteAppService, PacienteAppService>();
             service.AddScoped<IMedicoAppService, MedicoAppService>();
-
+            service.AddScoped<IEspecialidadeAppService, EspecialidadeAppService>();
+            service.AddScoped<ICoberturaAppService, CoberturaAppService>();
+            service.AddScoped<IConsultaAppService, ConsultaAppService>();
+            service.AddScoped<IHorarioAtendimentoAppService, HorarioAtendimentoAppService>();
+            service.AddScoped<IHorarioAppService, HorarioAppService>();
+            
             service.AddScoped<IMapper, Mapper>();
 
         }

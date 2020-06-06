@@ -1,7 +1,10 @@
-﻿using Clinica.Domain.Interfaces.Repositories;
+﻿using System.Collections.Generic;
+using Clinica.Domain.Interfaces.Repositories;
 using Clinica.Domain.Models;
 using Clinica.Infra.Context;
 using Clinica.Infra.Repositories.Base;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Clinica.Infra.Repositories
 {
@@ -13,5 +16,6 @@ namespace Clinica.Infra.Repositories
         {
             _context = context;
         }
+
     }
 }

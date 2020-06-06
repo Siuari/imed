@@ -11,7 +11,7 @@ namespace Clinica.Domain.Interfaces.Repositories.Base
         ICollection<TEntity> Listar();
         ICollection<TEntity> Listar(Expression<Func<TEntity, bool>> predicate);
         void Inserir(TEntity entity);
-        void Atualizar(TEntity entity);
+        TEntity Atualizar(TEntity entity);
         TEntity Remover(TKey entity);
         void Salvar();
     }

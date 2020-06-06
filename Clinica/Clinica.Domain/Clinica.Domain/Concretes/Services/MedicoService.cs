@@ -1,8 +1,8 @@
-﻿using Clinica.Domain.Interfaces.Repositories;
-using Clinica.Domain.Interfaces.Repositories.Base;
+﻿using Clinica.Domain.Interfaces.Services;
 using Clinica.Domain.Models;
 using System;
 using System.Collections.Generic;
+using Clinica.Domain.Interfaces.Repositories;
 
 namespace Clinica.Domain.Concretes.Services
 {
@@ -15,7 +15,7 @@ namespace Clinica.Domain.Concretes.Services
             _medicoRepository = medicoRepository;
         }
 
-        public void CadastrarMedico(Medico medico)
+        public Medico CadastrarMedico(Medico medico)
         {
             var medicoCadastrado = _medicoRepository.ObterPorCrm(medico.Crm);
 
@@ -25,6 +25,24 @@ namespace Clinica.Domain.Concretes.Services
             medico.GerarId();
             _medicoRepository.Inserir(medico);
             _medicoRepository.Salvar();
+
+            return medico;
+        }
+
+        public Medico AtualizarMedico(Medico medico)
+        {
+            var medicoAtualizado = _medicoRepository.Atualizar(medico);
+            _medicoRepository.Salvar();
+
+            return medicoAtualizado;
+        }
+
+        public Medico DeletarMedico(Guid id)
+        {
+            var medico = _medicoRepository.Remover(id);
+            _medicoRepository.Salvar();
+
+            return medico;
         }
 
         public ICollection<Medico> ListarMedicos()

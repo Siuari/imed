@@ -18,7 +18,7 @@ namespace Clinica.Infra.Mappings
 
             builder.HasOne(x => x.Horario)
                 .WithMany(x => x.HorariosAtendimento)
-                .HasForeignKey(x => x.IdMedico);
+                .HasForeignKey(x => x.IdHorario);
 
             builder.HasMany(x => x.Consultas)
                 .WithOne(x => x.HorarioAtendimento)

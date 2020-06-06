@@ -8,6 +8,9 @@ namespace Clinica.AppService.Interfaces
     {
         void Inserir(CadastrarPacienteViewModel viewModel);
         PacienteViewModel ObterPorId(Guid id);
+        PacienteViewModel ObterPorCpf(string cpf);
+        Guid ObterIdPacientePorCpf(string cpf);
         PacienteDeletadoViewModel RemoverPaciente(Guid id);
+        PacienteDeletadoViewModel AtualizarNomeCpfPaciente(AtualizarNomeCpfPacienteViewModel view);
     }
 }

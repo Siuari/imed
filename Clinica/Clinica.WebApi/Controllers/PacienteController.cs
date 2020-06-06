@@ -3,6 +3,7 @@ using Clinica.AppService.ViewModels;
 using Clinica.WebApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using Clinica.AppService.ViewModels.Paciente;
 
 namespace Clinica.WebApi.Controllers
 {
@@ -54,7 +55,63 @@ namespace Clinica.WebApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("obter-por-cpf")]
+        public IActionResult ObterPacientePorCpf(string cpf)
+        {
+            try
+            {
+                var result = _pacienteAppService.ObterPorCpf(cpf);
+
+                return Ok(new ResponseHelper("", true, result));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        [Route("obter-id-por-cpf")]
+        public IActionResult ObterIdPacientePorCpf(string cpf)
+        {
+            try
+            {
+                var result = _pacienteAppService.ObterIdPacientePorCpf(cpf);
+
+                return Ok(new ResponseHelper("", true, result));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         [HttpPut]
+        [Route("atualizar-nome")]
+        public IActionResult AtualizarNomeCpfPaciente([FromBody] AtualizarNomeCpfPacienteViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Erro! View Model invalida");
+            }
+
+            try
+            {
+                var result = _pacienteAppService.AtualizarNomeCpfPaciente(viewModel);
+
+                return Ok(new ResponseHelper("Paciente cadastrado com sucesso", true, result));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseHelper(e.Message, false, e));
+            }
+        }        
+
+
+        [HttpDelete]
         [Route("remover-paciente")]
         public IActionResult RemoverPaciente(Guid id)
         {

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Clinica.AppService.ViewModels.Paciente
+namespace Clinica.AppService.ViewModels.Consulta
 {
-    public class AtualizarNomeCpfPaciente
+    public class PacienteConsultaViewModel
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }

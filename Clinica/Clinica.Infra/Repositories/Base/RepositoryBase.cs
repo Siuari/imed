@@ -31,9 +31,11 @@ namespace Clinica.Infra.Repositories.Base
             _context.Set<TEntity>().Add(entity);
         }
 
-        public virtual void Atualizar(TEntity entity)
+        public virtual TEntity Atualizar(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+
+            return entity;
         }
 
 

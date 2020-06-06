@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Clinica.AppService.Interfaces;
+﻿using Clinica.AppService.Interfaces;
 using Clinica.AppService.ViewModels.Medico;
 using Clinica.WebApi.Helpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Clinica.WebApi.Controllers
 {
@@ -32,11 +28,30 @@ namespace Clinica.WebApi.Controllers
             {
                 _medicoAppService.CadastrarMedico(viewModel);
 
-                return Ok(new ResponseHelper {Message = "Cadastro realizado com sucesso"});
+                return Ok(new ResponseHelper("Cadastro concluido com sucesso", true, null));
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(new ResponseHelper(e.Message, false, e));
+            }
+        }
+
+        [HttpPut]
+        [Route("atualizar-medico")]
+        public IActionResult AtualizarMedico([FromBody] AtualizarMedicoViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Erro, view model invalida");
+
+            try
+            {
+                var result = _medicoAppService.AtualizarMedico(viewModel);
+
+                return Ok(new ResponseHelper("Cadastro concluido com sucesso", true, null));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseHelper(e.Message, false, e));
             }
         }
 
@@ -46,11 +61,29 @@ namespace Clinica.WebApi.Controllers
         {
             try
             {
-                return Ok(_medicoAppService.ListarMedicos());
+                var result = _medicoAppService.ListarMedicos();
+
+                return Ok(new ResponseHelper("", true, result));
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(new ResponseHelper(e.Message, false, e));
+            }
+        }
+
+        [HttpDelete]
+        [Route("deletar-medico")]
+        public IActionResult DeletarMedicos(Guid id)
+        {
+            try
+            {
+                var result = _medicoAppService.DeletarMedico(id);
+
+                return Ok(new ResponseHelper("", true, result));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseHelper(e.Message, false, e));
             }
         }
     }

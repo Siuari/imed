@@ -24,5 +24,20 @@ namespace Clinica.Infra.Repositories
                 .Include(x => x.Endereco)
                 .FirstOrDefault();
         }
+
+        public Paciente ObterPorCpf(string cpf)
+        {
+            return _context.Set<Paciente>()
+                .Include(x => x.Endereco)
+                .FirstOrDefault(x => x.Cpf == cpf);
+        }
+
+        public Guid ObterIdPacientePorCpf(string cpf)
+        {
+            return _context.Set<Paciente>()
+                .Where(paciente => paciente.Cpf == cpf)
+                .Select(paciente => paciente.Id)
+                .FirstOrDefault().Value;
+        }
     }
 }

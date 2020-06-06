@@ -5,5 +5,8 @@ using Clinica.Domain.Models;
 namespace Clinica.Domain.Interfaces.Repositories
 {
     public interface IEnderecoRepository : IRepositoryBase<Guid, Endereco>
+    {
+
     }
+    
 }

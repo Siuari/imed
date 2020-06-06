@@ -7,6 +7,7 @@ namespace Clinica.Domain.Interfaces.Repositories
     public interface IPacienteRepository : IRepositoryBase<Guid, Paciente>
     {
         Paciente ObterPorId(Guid id);
-        object Listar(Func<object, bool> p);
+        Paciente ObterPorCpf(string cpf);
+        Guid ObterIdPacientePorCpf(string cpf);
     }
 }

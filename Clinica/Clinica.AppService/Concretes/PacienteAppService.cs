@@ -29,9 +29,26 @@ namespace Clinica.AppService.Concretes
             return _mapper.Map<PacienteViewModel>(_pacienteService.ObterPorId(id));
         }
 
+        public PacienteViewModel ObterPorCpf(string cpf)
+        {
+            return _mapper.Map<PacienteViewModel>(_pacienteService.ObterPorCpf(cpf));
+        }
+
+        public Guid ObterIdPacientePorCpf(string cpf)
+        {
+            return _pacienteService.ObterIdPacientePorCpf(cpf);
+        }
+
         public PacienteDeletadoViewModel RemoverPaciente(Guid id)
         {
             return _mapper.Map<PacienteDeletadoViewModel>(_pacienteService.RemoverPaciente(id));
+        }
+
+        public PacienteDeletadoViewModel AtualizarNomeCpfPaciente(AtualizarNomeCpfPacienteViewModel viewModel)
+        {
+            var result = _pacienteService.AtualizarNomeCpfPaciente(viewModel.Id, viewModel.Nome, viewModel.Cpf);
+
+            return _mapper.Map<PacienteDeletadoViewModel>(result);
         }
     }
 }

@@ -6,11 +6,11 @@ namespace Clinica.Domain.Models
 {
     public class Medico : Entity
     {
-        public Guid IdEspecialidade { get; set; }
-        public string Nome { get; set; }
-        public string Crm { get; set; }
+        public Guid IdEspecialidade { get; private set; }
+        public string Nome { get; private set; }
+        public string Crm { get; private set; }
 
-        public Especialidade Especialidade { get; set; }
-        public IEnumerable<HorarioAtendimento> HorariosAtendimento { get; set; }
+        public Especialidade Especialidade { get; private set; }
+        public IEnumerable<HorarioAtendimento> HorariosAtendimento { get; private set; }
     }
 }

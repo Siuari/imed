@@ -48,6 +48,16 @@ namespace Clinica.Domain.Concretes.Services
             return _pacienteRepository.ObterPorId(id);
         }
 
+        public Paciente ObterPorCpf(string cpf)
+        {
+            return _pacienteRepository.ObterPorCpf(cpf);
+        }
+
+        public Guid ObterIdPacientePorCpf(string cpf)
+        {
+            return _pacienteRepository.ObterIdPacientePorCpf(cpf);
+        }
+
         private Endereco InserirEnderecoDoPaciente(Endereco endereco)
         {
             var enderecoCadastrado = _enderecoRepository.Listar(e => e.Cep == endereco.Cep 
@@ -65,14 +75,25 @@ namespace Clinica.Domain.Concretes.Services
             return endereco;
         }
 
-        public Paciente Atualizar(Paciente paciente)
+        public Paciente AtualizarNomeCpfPaciente(Guid id, string nome, string cpf)
         {
-            throw new System.NotImplementedException();
+            var pacienteAtualizar = _pacienteRepository.ObterPorId(id);
+
+            pacienteAtualizar.AlterarNome(nome);
+            pacienteAtualizar.AlterarCpf(cpf);
+
+            _pacienteRepository.Atualizar(pacienteAtualizar);
+            _pacienteRepository.Salvar();
+
+            return pacienteAtualizar;
         }
 
         public Paciente RemoverPaciente(Guid id)
         {
-            return _pacienteRepository.Remover(id);
+            var paciente = _pacienteRepository.Remover(id);
+            _pacienteRepository.Salvar();
+
+            return paciente;
         }
     }
 }

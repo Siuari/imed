@@ -16,7 +16,7 @@ namespace Clinica.Infra.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Clinica.Domain.Models.Cobertura", b =>
@@ -168,6 +168,8 @@ namespace Clinica.Infra.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdHorario");
 
                     b.HasIndex("IdMedico");
 
@@ -377,7 +379,7 @@ namespace Clinica.Infra.Migrations
                 {
                     b.HasOne("Clinica.Domain.Models.Horario", "Horario")
                         .WithMany("HorariosAtendimento")
-                        .HasForeignKey("IdMedico")
+                        .HasForeignKey("IdHorario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

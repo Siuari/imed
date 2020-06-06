@@ -23,6 +23,16 @@ namespace Clinica.Domain.Models
             IdEndereco = idEndereco;
         }
 
+        public void AlterarNome(string nome)
+        {
+            Nome = nome;
+        }
+
+        public void AlterarCpf(string cpf)
+        {
+            Cpf = cpf;
+        }
+
         public void GerarUsuario(EnumTipoUsuario tipoUsuario)
         {
             Usuario = new Usuario(Cpf, Cpf, Id.Value, tipoUsuario);

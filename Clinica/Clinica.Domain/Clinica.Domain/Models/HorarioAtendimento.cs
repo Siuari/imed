@@ -9,8 +9,8 @@ namespace Clinica.Domain.Models
         public Guid IdMedico { get; set; }
         public Guid IdHorario { get; set; }
 
-        public Medico Medico { get; set; }
-        public Horario Horario { get; set; }
-        public IEnumerable<Consulta> Consultas { get; set; }
+        public virtual Medico Medico { get; set; }
+        public virtual Horario Horario { get; set; }
+        public virtual IEnumerable<Consulta> Consultas { get; set; }
     }
 }

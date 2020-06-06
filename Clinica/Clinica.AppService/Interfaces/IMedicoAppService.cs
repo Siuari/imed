@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Clinica.AppService.ViewModels.Medico;
 
 namespace Clinica.AppService.Interfaces
@@ -7,5 +8,7 @@ namespace Clinica.AppService.Interfaces
     {
         void CadastrarMedico(CadastrarMedicoViewModel viewModel);
         ICollection<MedicoViewModel> ListarMedicos();
+        MedicoViewModel AtualizarMedico(AtualizarMedicoViewModel viewModel);
+        MedicoViewModel DeletarMedico(Guid id);
     }
 }

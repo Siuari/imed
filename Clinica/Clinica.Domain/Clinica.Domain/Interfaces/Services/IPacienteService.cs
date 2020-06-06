@@ -7,7 +7,9 @@ namespace Clinica.Domain.Interfaces.Services
     {
         Paciente Inserir(Paciente paciente);
         Paciente ObterPorId(Guid id);
-        Paciente Atualizar(Paciente paciente);
+        Paciente ObterPorCpf(string cpf);
+        Guid ObterIdPacientePorCpf(string cpf);
+        Paciente AtualizarNomeCpfPaciente(Guid id, string nome, string cpf);
         Paciente RemoverPaciente(Guid id);
     }
 }

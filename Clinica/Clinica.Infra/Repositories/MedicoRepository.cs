@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Clinica.Domain.Interfaces.Repositories.Base;
+﻿using Clinica.Domain.Interfaces.Repositories;
 using Clinica.Domain.Models;
 using Clinica.Infra.Context;
 using Clinica.Infra.Repositories.Base;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Clinica.Infra.Repositories
 {
@@ -15,6 +15,11 @@ namespace Clinica.Infra.Repositories
         public MedicoRepository(ClinicaContext context) : base(context)
         {
             _context = context; 
+        }
+
+        public void CadastrarMedico(Medico medico)
+        {
+            throw new System.NotImplementedException();
         }
 
         public Medico ObterPorCrm(string crm)

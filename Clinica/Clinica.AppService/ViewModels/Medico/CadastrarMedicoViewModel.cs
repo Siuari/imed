@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Clinica.AppService.ViewModels.Medico
 {
@@ -9,5 +8,6 @@ namespace Clinica.AppService.ViewModels.Medico
         public Guid IdEspecialidade { get; set; }
         public string Nome { get; set; }
         public string Crm { get; set; }
+        public ICollection<HorarioAtendimentoViewModel> HorariosAtendimento { get; set; }
     }
 }
