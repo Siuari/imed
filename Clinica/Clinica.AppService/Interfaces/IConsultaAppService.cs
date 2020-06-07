@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Clinica.AppService.ViewModels.Consulta;
+using System;
 using System.Collections.Generic;
-using Clinica.AppService.ViewModels.Consulta;
-using Clinica.Domain.Models;
 
 namespace Clinica.AppService.Interfaces
 {
@@ -13,5 +12,6 @@ namespace Clinica.AppService.Interfaces
         ICollection<ConsultaViewModel> ListarConsultasPorIdMedico(Guid idMedico);
         ConsultaViewModel ObterConsultaPorId(Guid id);
         ConsultaMarcadaViewModel ObterConsultaAgendada(Guid idPaciente);
+        ConsultaPagaViewModel PagarConsulta(PagarConsultaViewModel viewModel);
     }
 }

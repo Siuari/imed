@@ -48,5 +48,10 @@ namespace Clinica.AppService.Concretes
         {
             return _mapper.Map<ConsultaMarcadaViewModel>(_consultaService.ObterConsultaAgendada(idPaciente));
         }
+
+        public ConsultaPagaViewModel PagarConsulta(PagarConsultaViewModel viewModel)
+        {
+            return _mapper.Map<ConsultaPagaViewModel>(_consultaService.PagarConsulta(viewModel.Id, _mapper.Map<IEnumerable<Pagamento>>(viewModel.Pagamentos)));
+        }
     }
 }

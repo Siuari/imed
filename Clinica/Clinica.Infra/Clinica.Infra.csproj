@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200516181753_Tabela-Usuario.Designer.cs" />
     <Compile Remove="Migrations\20200516182533_Tabela-Usuario.cs" />
     <Compile Remove="Migrations\20200516182533_Tabela-Usuario.Designer.cs" />
+    <Compile Remove="Migrations\20200607111158_Consulta-InserirColunas-ValorConsulta-E-StatusConsulta.cs" />
+    <Compile Remove="Migrations\20200607111158_Consulta-InserirColunas-ValorConsulta-E-StatusConsulta.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

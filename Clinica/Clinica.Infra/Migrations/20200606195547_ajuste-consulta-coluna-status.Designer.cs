@@ -3,15 +3,17 @@ using System;
 using Clinica.Infra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Clinica.Infra.Migrations
 {
     [DbContext(typeof(ClinicaContext))]
-    partial class ClinicaContextModelSnapshot : ModelSnapshot
+    [Migration("20200606195547_ajuste-consulta-coluna-status")]
+    partial class AjusteConsultaColunaStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,10 +63,6 @@ namespace Clinica.Infra.Migrations
                     b.Property<int>("StatusConsulta")
                         .HasColumnName("Con_StatusConsulta")
                         .HasColumnType("integer");
-
-                    b.Property<decimal>("ValorConsulta")
-                        .HasColumnName("Con_ValorConsulta")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 

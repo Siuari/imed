@@ -4,6 +4,7 @@ using Clinica.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Clinica.Domain.Enums;
 
 namespace Clinica.Domain.Concretes.Services
 {
@@ -31,6 +32,7 @@ namespace Clinica.Domain.Concretes.Services
                 throw new Exception("Erro, horario de atendimento invalido");
 
             contulta.GerarId();
+            contulta.ConsultaAgendada();
 
             _consultaRepository.Inserir(contulta);
             _consultaRepository.Salvar();
@@ -38,7 +40,10 @@ namespace Clinica.Domain.Concretes.Services
 
         public Consulta CancelarConsulta(Guid id)
         {
-            var consulta =_consultaRepository.Remover(id);
+            var consulta =_consultaRepository.Listar(consulta => consulta.Id == id).FirstOrDefault();
+            consulta.AlterarStatus(EnumStatusConsulta.Cancelada);
+
+            _consultaRepository.Atualizar(consulta);
             _consultaRepository.Salvar();
 
             return consulta;
@@ -70,6 +75,30 @@ namespace Clinica.Domain.Concretes.Services
         public Consulta ObterConsultaAgendada(Guid idPaciente)
         {
             return _consultaRepository.ObterConsultaAgendada(idPaciente);
+        }
+
+        public Consulta PagarConsulta(Guid id, IEnumerable<Pagamento> pagamentos)
+        {
+            var consulta = _consultaRepository.ObterNaoFinalizadaPorId(id);
+
+            for (int i = 0; i < pagamentos.Count(); i++)
+            {
+                pagamentos.ElementAt(i).AtualizarDataPagamento();
+            }
+
+            consulta.AdicionarPagamento(pagamentos);
+
+            if (!consulta.ConsultaQuitada())
+            {
+                throw new Exception("Valor incompleto para quitar a consulta");
+            }
+            
+            consulta.AlterarStatus(EnumStatusConsulta.Finalizada);
+            
+            var consultaAtualizada = _consultaRepository.Atualizar(consulta);
+            _consultaRepository.Salvar();
+
+            return consultaAtualizada;
         }
     }
 }
