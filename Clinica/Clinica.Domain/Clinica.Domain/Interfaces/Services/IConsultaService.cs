@@ -6,7 +6,7 @@ namespace Clinica.Domain.Interfaces.Services
 {
     public interface IConsultaService
     {
-        void InserirConsulta(Consulta contulta);
+        Consulta InserirConsulta(Consulta consulta);
         Consulta CancelarConsulta(Guid id);
         Consulta AtualizarConsulta(Consulta conulsta);
         ICollection<Consulta> ListarConsultasPorIdPaciente(Guid idPaciente);

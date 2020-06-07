@@ -17,6 +17,7 @@ namespace Clinica.AppService.AutoMapper.DomainToViewModel
         public DomainToViewModelMappingProfile()
         {
             CreateMap<Consulta, ConsultaPagaViewModel>();
+            CreateMap<Consulta, ConsultaCadastradaViewModel>();
             CreateMap<Paciente, PacienteViewModel>();
             CreateMap<Paciente, PacienteDeletadoViewModel>();
             CreateMap<Endereco, EnderecoViewModel>();

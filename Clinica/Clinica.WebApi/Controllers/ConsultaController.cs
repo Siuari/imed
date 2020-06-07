@@ -90,9 +90,9 @@ namespace Clinica.WebApi.Controllers
 
             try
             {
-                _consultaAppService.InserirConsulta(viewModel);
+                var result = _consultaAppService.InserirConsulta(viewModel);
 
-                return Ok(new ResponseHelper("CONSULTA CADASTRADA COM SUCESSO", true, null));
+                return Ok(new ResponseHelper("CONSULTA CADASTRADA COM SUCESSO", true, result));
             }
             catch (Exception e)
             {
