@@ -10,5 +10,6 @@ namespace Clinica.AppService.ViewModels.Consulta
         public Guid IdCobertura { get; set; }
         public Guid IdHorarioAtendimento { get; set; }
         public DateTime DataConsulta { get; set; }
+        public decimal ValorConsulta { get; set; }
     }
 }
