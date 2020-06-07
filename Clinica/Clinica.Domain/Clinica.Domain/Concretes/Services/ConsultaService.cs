@@ -76,5 +76,29 @@ namespace Clinica.Domain.Concretes.Services
         {
             return _consultaRepository.ObterConsultaAgendada(idPaciente);
         }
+
+        public Consulta PagarConsulta(Guid id, IEnumerable<Pagamento> pagamentos)
+        {
+            var consulta = _consultaRepository.ObterNaoFinalizadaPorId(id);
+
+            for (int i = 0; i < pagamentos.Count(); i++)
+            {
+                pagamentos.ElementAt(i).AtualizarDataPagamento();
+            }
+
+            consulta.AdicionarPagamento(pagamentos);
+
+            if (!consulta.ConsultaQuitada())
+            {
+                throw new Exception("Valor incompleto para quitar a consulta");
+            }
+            
+            consulta.AlterarStatus(EnumStatusConsulta.Finalizada);
+            
+            var consultaAtualizada = _consultaRepository.Atualizar(consulta);
+            _consultaRepository.Salvar();
+
+            return consultaAtualizada;
+        }
     }
 }

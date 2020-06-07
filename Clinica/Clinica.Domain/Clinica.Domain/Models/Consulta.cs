@@ -23,7 +23,7 @@ namespace Clinica.Domain.Models
 
         public void AlterarStatus(EnumStatusConsulta statusConsulta)
         {
-            if (StatusConsulta == EnumStatusConsulta.Cancelada)
+            if (StatusConsulta == EnumStatusConsulta.Cancelada || StatusConsulta == EnumStatusConsulta.Finalizada)
                 throw new Exception("Consulta cancelada não pode ter o status alterado!");
 
             if (StatusConsulta == EnumStatusConsulta.Agendada &&
@@ -38,7 +38,7 @@ namespace Clinica.Domain.Models
             StatusConsulta = EnumStatusConsulta.Agendada;
         }
 
-        public void AdicionarPagamento(List<Pagamento> pagamentos)
+        public void AdicionarPagamento(IEnumerable<Pagamento> pagamentos)
         {
             Pagamentos = pagamentos;
         }

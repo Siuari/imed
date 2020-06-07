@@ -99,5 +99,25 @@ namespace Clinica.WebApi.Controllers
                 return Ok(new ResponseHelper(e.Message, false, e.InnerException));
             }
         }
+
+        [HttpPut]
+        [Route("pagar-consulta")]
+        public IActionResult PagarConsulta([FromBody] PagarConsultaViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+                return Ok(new ResponseHelper("VIEW MODEL INVALIDA", false, null));
+
+            try
+            {
+                var result = _consultaAppService.PagarConsulta(viewModel);
+
+                return Ok(new ResponseHelper("CONSULTA CADASTRADA COM SUCESSO", true, result));
+            }
+            catch (Exception e)
+            {
+                return Ok(new ResponseHelper(e.Message, false, e.InnerException));
+            }
+
+        }
     }
 }

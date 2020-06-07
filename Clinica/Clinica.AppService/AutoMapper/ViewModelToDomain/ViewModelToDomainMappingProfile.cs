@@ -22,6 +22,8 @@ namespace Clinica.AppService.AutoMapper.ViewModelToDomain
             CreateMap<CadastrarPacienteViewModel, Paciente>();
             CreateMap<EnderecoCadastroClienteViewModel, Endereco>();
             CreateMap<HorarioAtendimentoViewModel, HorarioAtendimento>();
+            CreateMap<PagarConsultaViewModel, Consulta>();
+            CreateMap<PagamentoViewModel, Pagamento>();
         }
     }
 }
