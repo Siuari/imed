@@ -27,6 +27,7 @@ namespace Clinica.Infra.IoC
             service.AddScoped<IMedicoRepository, MedicoRepository>();
             service.AddScoped<IEspecialidadeRepository, EspecialidadeRepository>();
 
+            service.AddScoped<IAutenticacaoService, AutenticacaoService>();
             service.AddScoped<IPacienteService, PacienteService>();
             service.AddScoped<IMedicoService, MedicoSercive>();
             service.AddScoped<IEspecialidadeService, EspecialidadeService>();
@@ -35,6 +36,7 @@ namespace Clinica.Infra.IoC
             service.AddScoped<IHorarioAtendimentoService, HorarioAtendimentoService>();
             service.AddScoped<IHorarioService, HorarioService>();
 
+            service.AddScoped<IAutenticacaoAppService, AutenticacaoAppService>();
             service.AddScoped<IPacienteAppService, PacienteAppService>();
             service.AddScoped<IMedicoAppService, MedicoAppService>();
             service.AddScoped<IEspecialidadeAppService, EspecialidadeAppService>();
