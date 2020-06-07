@@ -13,6 +13,7 @@ namespace Clinica.Infra.Mappings
             builder.Property(x => x.IdCobertura).HasColumnName("Cob_IdCobertura");
             builder.Property(x => x.IdHorarioAtendimento).HasColumnName("Hoa_IdHorarioAtendimento");
             builder.Property(x => x.DataConsulta).HasColumnName("Con_Data");
+            builder.Property(x => x.StatusConsulta).HasColumnName("Con_StatusConsulta");
 
             builder.HasOne(x => x.Cobertura)
                 .WithMany(x => x.Consultas)

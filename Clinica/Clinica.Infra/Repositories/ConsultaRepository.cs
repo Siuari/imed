@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Clinica.Domain.Enums;
 using Clinica.Domain.Models;
 using Clinica.Infra.Context;
 using Clinica.Infra.Repositories.Base;
@@ -37,7 +38,13 @@ namespace Clinica.Infra.Repositories
                 .ThenInclude(horarioAtendimento => horarioAtendimento.Medico)
                 .Include(consulta => consulta.HorarioAtendimento)
                 .ThenInclude(horarioAtendimento => horarioAtendimento.Horario)
-                .FirstOrDefault(consulta => consulta.IdPaciente == idPaciente);
+                .FirstOrDefault(consulta => consulta.IdPaciente == idPaciente && consulta.StatusConsulta == EnumStatusConsulta.Agendada);
+        }
+
+        public Consulta ObterNaoFinalizadaPorId(Guid id)
+        {
+            return _context.Set<Consulta>()
+                .FirstOrDefault(consulta => consulta.Id == id && consulta.StatusConsulta == EnumStatusConsulta.Agendada);
         }
     }
 }

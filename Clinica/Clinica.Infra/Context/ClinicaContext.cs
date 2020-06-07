@@ -41,7 +41,7 @@ namespace Clinica.Infra.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Server = db; Port = 5432; Database = clinicadb; User Id = postgres; Password = postgres;");
+            optionsBuilder.UseNpgsql("Server = localhost; Port = 5432; Database = clinicadb; User Id = postgres; Password = postgres;");
 
             base.OnConfiguring(optionsBuilder);
         }

@@ -10,5 +10,6 @@ namespace Clinica.Domain.Interfaces.Repositories
     {
         ICollection<Consulta> ListarConsultas(Expression<Func<Consulta, bool>> predicate);
         Consulta ObterConsultaAgendada(Guid idPaciente);
+        Consulta ObterNaoFinalizadaPorId(Guid id);
     }
 }
