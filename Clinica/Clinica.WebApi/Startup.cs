@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using Clinica.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Clinica.WebApi
 {
@@ -24,6 +26,8 @@ namespace Clinica.WebApi
             services.AddControllers();
             services.AddCors();
             services.AddAutoMapper(typeof(AutoMapperSetup));
+
+            services.AddDbContext<ClinicaContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionString")));
 
             RegisterServices(services);
         }

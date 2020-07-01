@@ -38,12 +38,5 @@ namespace Clinica.Infra.Context
 
             base.OnModelCreating(modelBuilder);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql("Server = db; Port = 5432; Database = clinicadb; User Id = postgres; Password = postgres;");
-
-            base.OnConfiguring(optionsBuilder);
-        }
     }
 }

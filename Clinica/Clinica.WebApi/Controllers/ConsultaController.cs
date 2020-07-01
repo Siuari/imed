@@ -117,7 +117,24 @@ namespace Clinica.WebApi.Controllers
             {
                 return Ok(new ResponseHelper(e.Message, false, e.InnerException));
             }
-
         }
+
+        [HttpGet]
+        [Route("consultas-vencidas")]
+        public IActionResult ListarConsultasVencidas()
+        {
+            try
+            {
+                var result = _consultaAppService.ListarConsultasVencidas();
+
+                return Ok(new ResponseHelper("", true, result));
+            }
+            catch (Exception e)
+            {
+                return Ok(new ResponseHelper(e.Message, false, null));
+            }
+        }
+
+
     }
 }

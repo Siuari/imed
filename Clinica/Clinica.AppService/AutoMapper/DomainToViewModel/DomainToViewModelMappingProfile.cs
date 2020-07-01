@@ -21,6 +21,13 @@ namespace Clinica.AppService.AutoMapper.DomainToViewModel
             CreateMap<Paciente, PacienteLogadoViewModel>();
             CreateMap<Consulta, ConsultaPagaViewModel>();
             CreateMap<Consulta, ConsultaCadastradaViewModel>();
+            
+            CreateMap<Consulta, ConsultaVencidaViewModel>()
+                .ForPath(x => x.Medico.Id, opt => opt.MapFrom(src => src.HorarioAtendimento.Medico.Id))
+                .ForPath(x => x.Medico.Nome, opt => opt.MapFrom(src => src.HorarioAtendimento.Medico.Nome))
+                .ForPath(x => x.Medico.Crm, opt => opt.MapFrom(src => src.HorarioAtendimento.Medico.Crm))
+                .ForPath(x => x.Medico.Especialidade, opt => opt.MapFrom(src => src.HorarioAtendimento.Medico.Especialidade.Descricao));
+            
             CreateMap<Paciente, PacienteViewModel>();
             CreateMap<Paciente, PacienteDeletadoViewModel>();
             CreateMap<Endereco, EnderecoViewModel>();
@@ -35,6 +42,7 @@ namespace Clinica.AppService.AutoMapper.DomainToViewModel
             CreateMap<Medico, MedicoViewModel>();
             CreateMap<Horario, HorarioViewModel>();
             CreateMap<Horario, HorarioListagemViewModel>();
+            
             CreateMap<HorarioAtendimento, HorarioAtendimentoViewModel>()
                 .ForMember(x => x.HoraInicio, opt => opt.MapFrom(src => src.Horario.HoraInicio))
                 .ForMember(x => x.Dia, opt => opt.MapFrom(src => src.Horario.Dia));
