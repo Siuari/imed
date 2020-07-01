@@ -102,5 +102,10 @@ namespace Clinica.Domain.Concretes.Services
 
             return consultaAtualizada;
         }
+
+        public ICollection<Consulta> ListarConsultasVencidas()
+        {
+            return _consultaRepository.ListarConsultasVencidas();
+        }
     }
 }

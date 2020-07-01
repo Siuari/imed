@@ -14,5 +14,6 @@ namespace Clinica.Domain.Interfaces.Services
         Consulta ObterConsultaPorId(Guid id);
         Consulta ObterConsultaAgendada(Guid idPaciente);
         Consulta PagarConsulta(Guid id, IEnumerable<Pagamento> pagamentos);
+        ICollection<Consulta> ListarConsultasVencidas();
     }
 }

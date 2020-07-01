@@ -13,5 +13,6 @@ namespace Clinica.AppService.Interfaces
         ConsultaViewModel ObterConsultaPorId(Guid id);
         ConsultaMarcadaViewModel ObterConsultaAgendada(Guid idPaciente);
         ConsultaPagaViewModel PagarConsulta(PagarConsultaViewModel viewModel);
+        ICollection<ConsultaVencidaViewModel> ListarConsultasVencidas();
     }
 }

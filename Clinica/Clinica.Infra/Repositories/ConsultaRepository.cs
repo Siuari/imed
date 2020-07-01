@@ -46,5 +46,15 @@ namespace Clinica.Infra.Repositories
             return _context.Set<Consulta>()
                 .FirstOrDefault(consulta => consulta.Id == id && consulta.StatusConsulta == EnumStatusConsulta.Agendada);
         }
+
+        public ICollection<Consulta> ListarConsultasVencidas()
+        {
+            return _context.Set<Consulta>()
+                .Include(x => x.HorarioAtendimento).ThenInclude(x => x.Horario)
+                .Include(x => x.HorarioAtendimento).ThenInclude(x => x.Medico.Especialidade)
+                .Include(x => x.Paciente)
+                .Where(consulta => consulta.DataConsulta < DateTime.Now)
+                .ToList();
+        }
     }
 }
