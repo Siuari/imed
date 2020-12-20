@@ -19,9 +19,9 @@ namespace Clinica.AppService.Concretes
             _mapper = mapper;
         }
 
-        public void InserirConsulta(CadastrarConsultaViewModel ViewModel)
+        public ConsultaCadastradaViewModel InserirConsulta(CadastrarConsultaViewModel ViewModel)
         {
-            _consultaService.InserirConsulta(_mapper.Map<Consulta>(ViewModel));
+            return _mapper.Map<ConsultaCadastradaViewModel>(_consultaService.InserirConsulta(_mapper.Map<Consulta>(ViewModel)));
         }
 
         public ConsultaDeletadaViewModel CancelarConsulta(Guid id)

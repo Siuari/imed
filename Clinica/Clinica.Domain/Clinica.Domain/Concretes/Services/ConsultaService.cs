@@ -20,22 +20,24 @@ namespace Clinica.Domain.Concretes.Services
             _horarioAtendimentoRepository = horarioAtendimentoRepository;
         }
         
-        public void InserirConsulta(Consulta contulta)
+        public Consulta InserirConsulta(Consulta consulta)
         {
-            var consultasMarcadas = _consultaRepository.Listar(x => x.IdHorarioAtendimento == contulta.IdHorarioAtendimento && x.DataConsulta == contulta.DataConsulta);
-            var horarioAtendimento= _horarioAtendimentoRepository.ObterComHorario(contulta.IdHorarioAtendimento);
+            var consultasMarcadas = _consultaRepository.Listar(x => x.IdHorarioAtendimento == consulta.IdHorarioAtendimento && x.DataConsulta == consulta.DataConsulta);
+            var horarioAtendimento= _horarioAtendimentoRepository.ObterComHorario(consulta.IdHorarioAtendimento);
 
             if (consultasMarcadas.Count > LIMITE_CONSULTAS_POR_HORARIO)
                 throw new Exception("LIMITE DE CONSULTAS EXCEDIDO");
 
-            if (horarioAtendimento == null || (int)contulta.DataConsulta.DayOfWeek != (int)horarioAtendimento.Horario.Dia-1) 
+            if (horarioAtendimento == null || (int)consulta.DataConsulta.DayOfWeek != (int)horarioAtendimento.Horario.Dia-1) 
                 throw new Exception("Erro, horario de atendimento invalido");
 
-            contulta.GerarId();
-            contulta.ConsultaAgendada();
+            consulta.GerarId();
+            consulta.ConsultaAgendada();
 
-            _consultaRepository.Inserir(contulta);
+            _consultaRepository.Inserir(consulta);
             _consultaRepository.Salvar();
+
+            return consulta;
         }
 
         public Consulta CancelarConsulta(Guid id)

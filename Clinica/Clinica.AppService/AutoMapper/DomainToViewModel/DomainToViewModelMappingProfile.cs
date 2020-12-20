@@ -6,6 +6,7 @@ using Clinica.AppService.ViewModels.Paciente;
 using Clinica.AppService.ViewModels.Especialidade;
 using Clinica.AppService.ViewModels.Horario;
 using Clinica.AppService.ViewModels.Horario_Atendimento;
+using Clinica.AppService.ViewModels.Usuario;
 using Clinica.Domain.Models;
 using HorarioAtendimentoViewModel = Clinica.AppService.ViewModels.Consulta.HorarioAtendimentoViewModel;
 using MedicoViewModel = Clinica.AppService.ViewModels.Horario_Atendimento.MedicoViewModel;
@@ -16,7 +17,10 @@ namespace Clinica.AppService.AutoMapper.DomainToViewModel
     {
         public DomainToViewModelMappingProfile()
         {
+            CreateMap<Usuario, UsuarioLogadoViewModel>();
+            CreateMap<Paciente, PacienteLogadoViewModel>();
             CreateMap<Consulta, ConsultaPagaViewModel>();
+            CreateMap<Consulta, ConsultaCadastradaViewModel>();
             CreateMap<Paciente, PacienteViewModel>();
             CreateMap<Paciente, PacienteDeletadoViewModel>();
             CreateMap<Endereco, EnderecoViewModel>();

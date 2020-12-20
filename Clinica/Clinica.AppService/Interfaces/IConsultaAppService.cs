@@ -6,7 +6,7 @@ namespace Clinica.AppService.Interfaces
 {
     public interface IConsultaAppService
     {
-        void InserirConsulta(CadastrarConsultaViewModel contulta);
+        ConsultaCadastradaViewModel InserirConsulta(CadastrarConsultaViewModel contulta);
         ConsultaDeletadaViewModel CancelarConsulta(Guid id);
         ICollection<ConsultaViewModel> ListarConsultasPorIdPaciente(Guid idPaciente);
         ICollection<ConsultaViewModel> ListarConsultasPorIdMedico(Guid idMedico);
